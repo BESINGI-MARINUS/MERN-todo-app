@@ -12,8 +12,8 @@ const taskSchema = new mongoose.Schema(
       type: String,
       required: [true, "A task must have a category"],
       enum: {
-        values: ["Work", "Personal", "Other", "academy"],
-        message: "Category must be either: Work, Personal, or Other",
+        values: ["Work", "Personal", "Others", "Academic"],
+        message: "Category must be either: Work, Personal, Academic, or Others",
       },
     },
     completed: {
