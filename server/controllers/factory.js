@@ -1,0 +1,17 @@
+const catchAsync = require("../utils/catchAsync");
+const AppError = require("../utils/AppError");
+
+exports.getOne = (model) =>
+  catchAsync(async (req, res, next) => {
+    const doc = await model.findById(req.params.id);
+    if (!doc) return next(new AppError("No doc found with that ID", 404));
+
+    res.status(200).json({
+      success: true,
+      data: {
+        data: doc,
+      },
+    });
+  });
+
+// exports

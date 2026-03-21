@@ -1,6 +1,7 @@
 const Task = require("../models/taskModel");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/AppError");
+const factory = require("./factory");
 
 exports.getAllTasks = catchAsync(async (req, res) => {
   const tasks = await Task.find();
@@ -33,18 +34,7 @@ exports.createTask = catchAsync(async (req, res, next) => {
   });
 });
 
-// get a single task by id
-exports.getTask = catchAsync(async (req, res, next) => {
-  const task = await Task.findById(req.params.id);
-  if (!task) return next(new AppError("No task found with that ID", 404));
-
-  res.status(200).json({
-    success: true,
-    data: {
-      task,
-    },
-  });
-});
+exports.getTask = factory.getOne(Task);
 
 // update a task
 exports.updateTask = catchAsync(async (req, res, next) => {
