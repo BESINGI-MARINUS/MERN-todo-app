@@ -4,10 +4,8 @@ const handleCastErrDB = (err) =>
   new AppError(`Invalid ${err.path}: ${err.value}`, 400);
 
 const handleDuplicateErrDB = (err) => {
-  console.log("ERROR 🚨🚨🚨", err);
-  // const field = `${err.errmsg}`.match(/(name:\s*"([^"]+)")/)[2];
   const field = Object.keys(err.keyValue)[0];
-  const message = `Duplicate field value: "${field}". please use another value`;
+  const message = `Duplicate ${field}. please use another ${field}`;
   return new AppError(message, 404);
 };
 

@@ -12,12 +12,9 @@ exports.signup = catchAsync(async (req, res, next) => {
 
   // Handle email sending separately with error handling
   try {
-    const info = await Email({
-      to: user.email,
-      subject: "Welcome to TaskMaster!",
-      text: `Congratulations ${user.name}! \n You have successfully signed up to TaskMaster. \n We are excited to have you on board!`,
-    });
-    console.log(info);
+    const url = `${req.protocol}://${req.get("host")}/me`;
+    await new Email(user, url).sendWelcome();
+
     // Send token first before responding to the client, since email sending is not critical for signup success
     createSendToken(user, req, res, 201);
   } catch (emailError) {
