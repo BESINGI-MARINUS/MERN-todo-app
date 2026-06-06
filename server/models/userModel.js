@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema(
         validator: function (val) {
           return val === this.password;
         },
-        message: "Passwords are not the same!",
+        message: "Passwords do not match!",
       },
     },
     passwordChangedAt: Date,

@@ -55,7 +55,7 @@ module.exports = class Email {
   }
 
   async sendWelcome() {
-    await this.send("welcome", "Welcome to Task Tracker.");
+    await this.send("welcome", "Welcome to Task Planner.");
   }
 
   async sendPasswordReset() {
